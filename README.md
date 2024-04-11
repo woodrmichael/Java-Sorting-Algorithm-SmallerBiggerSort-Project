@@ -4,7 +4,7 @@
     - Read the lab assignment
     - Refactor `username` package to match your MSOE username
     - Create the `SmallerBiggerSort`, stub out the three class methods, and add JavaDoc for each method
-* [ ] Commit 2 "smallerBigger Tests"
+* [x] Commit 2 "smallerBigger Tests"
     - Identify four test cases for the `smallerBigger()` method
     - Implement JUnit tests for the `smallerBigger()` method
 * [ ] Commit 3 "smallerBigger Implementation"
