@@ -1,6 +1,6 @@
 # [CSC1120 Lab 12](https://csse.msoe.us/csc1120/lab12)
 
-* [ ] Commit 1 "JavaDoc"
+* [x] Commit 1 "JavaDoc"
     - Read the lab assignment
     - Refactor `username` package to match your MSOE username
     - Create the `SmallerBiggerSort`, stub out the three class methods, and add JavaDoc for each method
