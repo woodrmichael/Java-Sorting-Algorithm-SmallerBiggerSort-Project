@@ -34,7 +34,7 @@ public class SmallerBiggerSort {
         }
         T first = list.get(startInclusive);
         List<T> smaller = new ArrayList<>();
-        List<T> larger = new ArrayList<>();
+        List<T> bigger = new ArrayList<>();
         for(int i = 0; i < startInclusive; i++) {
             smaller.add(list.get(i));
         }
@@ -42,17 +42,17 @@ public class SmallerBiggerSort {
             if(list.get(i).compareTo(first) <= 0) {
                 smaller.add(list.get(i));
             } else if (list.get(i).compareTo(first) > 0) {
-                larger.add(list.get(i));
+                bigger.add(list.get(i));
             }
         }
         smaller.add(first);
         int index = smaller.size() - 1;
         for(int i = endExclusive; i < list.size(); i++) {
-            larger.add(list.get(i));
+            bigger.add(list.get(i));
         }
         list.clear();
         list.addAll(smaller);
-        list.addAll(larger);
+        list.addAll(bigger);
         return index;
     }
 
