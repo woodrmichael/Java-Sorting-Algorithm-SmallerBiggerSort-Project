@@ -28,8 +28,8 @@ public class SmallerBiggerSort {
      */
     public static <T extends Comparable<T>> int smallerBigger(
             List<T> list, int startInclusive, int endExclusive) throws IllegalArgumentException {
-        if(list == null || startInclusive < 0 || endExclusive < 0
-                || startInclusive >= endExclusive || endExclusive > list.size()) {
+        if(list == null || startInclusive < 0 || startInclusive >= endExclusive
+                || endExclusive > list.size()) {
             throw new IllegalArgumentException();
         }
         T first = list.get(startInclusive);
@@ -75,6 +75,6 @@ public class SmallerBiggerSort {
      * @param <T> A reference type that is Comparable.
      */
     public static <T extends Comparable<T>> void sort(List<T> list) {
-        sort(list, 0, list.size() - 1);
+        sort(list, 0, list.size());
     }
 }
