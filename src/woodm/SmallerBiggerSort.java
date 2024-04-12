@@ -7,6 +7,7 @@
  */
 package woodm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,10 +22,38 @@ public class SmallerBiggerSort {
      * @param endExclusive index where the list should end.
      * @param <T> A reference type that is Comparable.
      * @return index where the first element ended up being placed.
+     *
+     * @throws IllegalArgumentException thrown if the list is null or
+     * the startInclusive or endExclusive values aren't valid.
      */
     public static <T extends Comparable<T>> int smallerBigger(
-            List<T> list, int startInclusive, int endExclusive) {
-        return 0;
+            List<T> list, int startInclusive, int endExclusive) throws IllegalArgumentException {
+        if(list == null || startInclusive < 0 || endExclusive < 0
+                || startInclusive >= endExclusive || endExclusive > list.size()) {
+            throw new IllegalArgumentException();
+        }
+        T first = list.get(startInclusive);
+        List<T> smaller = new ArrayList<>();
+        List<T> larger = new ArrayList<>();
+        for(int i = 0; i < startInclusive; i++) {
+            smaller.add(list.get(i));
+        }
+        for(int i = startInclusive + 1; i < endExclusive; i++) {
+            if(list.get(i).compareTo(first) <= 0) {
+                smaller.add(list.get(i));
+            } else if (list.get(i).compareTo(first) > 0) {
+                larger.add(list.get(i));
+            }
+        }
+        smaller.add(first);
+        int index = smaller.size() - 1;
+        for(int i = endExclusive; i < list.size(); i++) {
+            larger.add(list.get(i));
+        }
+        list.clear();
+        list.addAll(smaller);
+        list.addAll(larger);
+        return index;
     }
 
     /**

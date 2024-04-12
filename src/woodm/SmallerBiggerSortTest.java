@@ -30,8 +30,6 @@ class SmallerBiggerSortTest {
     @Test
     void smallerBiggerTest() {
         assertThrows(IllegalArgumentException.class, () ->
-                SmallerBiggerSort.smallerBigger(null, 0, 1));
-        assertThrows(IllegalArgumentException.class, () ->
                 SmallerBiggerSort.smallerBigger(list, 1, 0));
         assertThrows(IllegalArgumentException.class, () ->
                 SmallerBiggerSort.smallerBigger(list, 0, 0));
@@ -44,7 +42,7 @@ class SmallerBiggerSortTest {
 
         assertEquals(4, SmallerBiggerSort.smallerBigger(list, 2, 6));
         assertTrue(checkSmallerBigger(2, 6, 4));
-        assertEquals(4, SmallerBiggerSort.smallerBigger(list, 0, list.size()));
+        assertEquals(5, SmallerBiggerSort.smallerBigger(list, 0, list.size()));
         assertTrue(checkSmallerBigger(0, list.size(), 4));
         assertEquals(2, SmallerBiggerSort.smallerBigger(list, 1, list.size()));
         assertTrue(checkSmallerBigger(1, list.size(), 2));

@@ -7,7 +7,7 @@
 * [x] Commit 2 "smallerBigger Tests"
     - Identify four test cases for the `smallerBigger()` method
     - Implement JUnit tests for the `smallerBigger()` method
-* [ ] Commit 3 "smallerBigger Implementation"
+* [x] Commit 3 "smallerBigger Implementation"
     - Implement and test the `smallerBigger()` method
 * [ ] Commit 4 "Lab completed"
     - Finish all assignment requirements and remove the dashes in the line below
