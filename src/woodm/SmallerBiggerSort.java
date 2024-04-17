@@ -66,7 +66,11 @@ public class SmallerBiggerSort {
      */
     public static <T extends Comparable<T>> void sort(
             List<T> list, int startInclusive, int endExclusive) {
-
+        if(startInclusive != endExclusive) {
+            int index = smallerBigger(list, startInclusive, endExclusive);
+            sort(list, startInclusive, index);
+            sort(list, index + 1, endExclusive);
+        }
     }
 
     /**

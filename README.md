@@ -9,8 +9,8 @@
     - Implement JUnit tests for the `smallerBigger()` method
 * [x] Commit 3 "smallerBigger Implementation"
     - Implement and test the `smallerBigger()` method
-* [ ] Commit 4 "Lab completed"
+* [x] Commit 4 "Lab completed"
     - Finish all assignment requirements and remove the dashes in the line below
 
-D-O-N-E-12
+DONE12
 
