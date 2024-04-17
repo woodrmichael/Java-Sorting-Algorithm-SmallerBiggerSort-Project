@@ -1,0 +1,152 @@
+<meta charset="utf-8" lang="en">            <style class="fallback">body{visibility:hidden;}</style>
+<!---
+
+
+                       DOWNLOAD AND OPEN IN A BROWSER
+                          TO SEE PROPER FORMATTING
+
+
+--->
+**Lab 12: Smaller Bigger**
+    Username: woodm
+    Date: 04-16-2024
+    Course: CSC1120
+    Submitted to: Dr. Chris Taylor
+
+!!! METRIcS: Instructor Feedback
+    | Earned | Possible | Criteria                                         |
+    | ------ | -------- | ------------------------------------------------ |
+    |    5   |     5    | Report: title, date, name included               |
+    |   10   |    10    | Report: Theoretical analysis of performace based on initial order |
+    |    3   |     5    | Report: Description of approach to benchmarking to analyze performance |
+    |    5   |     5    | Report: Benchmarking results                     |
+    |   10   |    10    | Report: Analysis of benchmarking results         |
+    |   25   |    25    | Technical quality (see point deductions in code) |
+    |   10   |    10    | Unit tests                                       |
+    |   15   |    15    | Intermediate commits                             |
+    |   10   |    10    | Coding standard compliance and program clarity   |
+    |    5   |     5    | Following submission instructions                |
+
+    [Nicely Done](https://msoe.us/taylor/Nice)
+
+# SmallerBiggerSort.java
+
+!!! MINUS: Too small
+    When attempting to determine the $O()$ performance of an algorithm,
+    you can't use a small list and expect to get meaningful results since
+    asympototic time complexity analysis is premised on $n \rightarrow \infty$.
+
+!!! MINUS: Must do multiple points to generate a curve
+    When attempting to determine the $O()$ performance of an algorithm,
+    you must test the algorithm on multiple input sizes. With a single point
+    you don't know if it is $O(1)$, $O(\log n)$, $O(n)$, $O(n^2)$, or something
+    else.
+
+~~~~ Java
+/*
+ * Course: CSC1120A 121
+ * Spring 2023
+ * Lab 12 - Smaller Bigger Sort
+ * Name: Michael Wood
+ * Created: 4/11/2024
+ */
+package woodm;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * A Smaller Bigger Sort Class is a class that contains methods used to sort data in O(n) time.
+ */
+public class SmallerBiggerSort {
+    /**
+     * Sorts the list in O(n) time. Places all elements smaller than the element at startInclusive
+     * before startInclusive and all the elements larger after startInclusive.
+     * @param list the list to sort.
+     * @param startInclusive index where the list should start.
+     * @param endExclusive index where the list should end.
+     * @param &lt&#xFEFF;T> A reference type that is Comparable.
+     * @return index where the first element ended up being placed.
+     *
+     * @throws IllegalArgumentException thrown if the list is null or
+     * the startInclusive or endExclusive values aren't valid.
+     */
+    public static &lt&#xFEFF;T extends Comparable&lt&#xFEFF;T>> int smallerBigger(
+            List&lt&#xFEFF;T> list, int startInclusive, int endExclusive) throws IllegalArgumentException {
+        if(list == null || startInclusive &lt&#xFEFF; 0 || startInclusive >= endExclusive
+                || endExclusive > list.size()) {
+            throw new IllegalArgumentException();
+        }
+        T first = list.get(startInclusive);
+        List&lt&#xFEFF;T> smaller = new ArrayList&lt&#xFEFF;>();
+        List&lt&#xFEFF;T> bigger = new ArrayList&lt&#xFEFF;>();
+        for(int i = 0; i &lt&#xFEFF; startInclusive; i++) {
+~~~~ Java highlight
+            smaller.add(list.get(i));
+~~~~
+!!! MINUS: -1 Avoid using `get()`
+    If the list passed to this method is a `LinkedList`, calls to
+    `get()` are $O(n)$, which could significantly impact the performance
+    of this method as $n$ gets big. Using a `ListIterator` is preferred.
+
+~~~~ Java
+        }
+        for(int i = startInclusive + 1; i &lt&#xFEFF; endExclusive; i++) {
+            if(list.get(i).compareTo(first) &lt&#xFEFF;= 0) {
+                smaller.add(list.get(i));
+            } else if (list.get(i).compareTo(first) > 0) {
+                bigger.add(list.get(i));
+            }
+        }
+        smaller.add(first);
+        int index = smaller.size() - 1;
+        for(int i = endExclusive; i &lt&#xFEFF; list.size(); i++) {
+            bigger.add(list.get(i));
+        }
+        list.clear();
+        list.addAll(smaller);
+        list.addAll(bigger);
+        return index;
+    }
+
+    /**
+     * A recursive sort method that works by creating sublists of all the elements
+     * smaller than a particular value and larger than the value.
+     * @param list the list to sort.
+     * @param startInclusive index where the list should start.
+     * @param endExclusive index where the list should end.
+     * @param &lt&#xFEFF;T> A reference type that is Comparable.
+     */
+    public static &lt&#xFEFF;T extends Comparable&lt&#xFEFF;T>> void sort(
+            List&lt&#xFEFF;T> list, int startInclusive, int endExclusive) {
+        if(startInclusive != endExclusive) {
+            int index = smallerBigger(list, startInclusive, endExclusive);
+            sort(list, startInclusive, index);
+            sort(list, index + 1, endExclusive);
+        }
+    }
+
+    /**
+     * Sorts the list by calling the recursive sort() method.
+     * @param list the list to sort.
+     * @param &lt&#xFEFF;T> A reference type that is Comparable.
+     */
+    public static &lt&#xFEFF;T extends Comparable&lt&#xFEFF;T>> void sort(List&lt&#xFEFF;T> list) {
+        sort(list, 0, list.size());
+    }
+}
+
+~~~~
+
+# Commit Log
+
+~~~~
+Thu Apr 11 01:11 "JavaDoc" # woodm@msoe.edu
+Thu Apr 11 09:05 "smallerBigger-Tests" # woodm@msoe.edu
+Thu Apr 11 20:30 "smallerBigger-Implementation" # woodm@msoe.edu
+Thu Apr 11 20:43 "smallerBigger-Implementation" # woodm@msoe.edu
+Thu Apr 11 20:43 "smallerBigger-Implementation" # woodm@msoe.edu
+Tue 19:46 "Lab-completed" # woodm@msoe.edu
+~~~~
+
+<!-- Markdeep: --><script src="https://csse.msoe.us/markdeep.js?graded"></script>
